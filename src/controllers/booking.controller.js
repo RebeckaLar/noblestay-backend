@@ -7,7 +7,7 @@ export const createBooking = async (req, res) => {
     const stayId = req.params.stayId
 
     if(!checkInDate || !checkOutDate || !room || !guestType || !numberOfGuests ) {
-        return res.status(400).json({ message: "bookedStay, checkInDate, checkOutDate, room, guestType, and numberOfGuests are required"})
+        return res.status(400).json({ message: "checkInDate, checkOutDate, room, guestType, and numberOfGuests are required"})
     }
 //  CTREATE BOOKING
     const newBooking = await Booking.create({ 

@@ -8,7 +8,7 @@ const staySchema = new mongoose.Schema({
     title: String,
     description: String,
     price: Number,
-    bookings: [{}]
+    bookings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Booking'}]
 })
 //^nu har jag skapat schema men inte modell ännu, har bara sagt hur datan ska se ut.
 //nu behöver kommunicera med db på ngt sätt
