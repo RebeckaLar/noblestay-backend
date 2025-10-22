@@ -7,7 +7,8 @@ const staySchema = new mongoose.Schema({
     //id automatiskt, mongodb ger alla id:n automatiskt ett understreck _id
     title: String,
     description: String,
-    price: Number
+    price: Number,
+    bookings: [{}]
 })
 //^nu har jag skapat schema men inte modell ännu, har bara sagt hur datan ska se ut.
 //nu behöver kommunicera med db på ngt sätt

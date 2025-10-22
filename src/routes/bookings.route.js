@@ -1,11 +1,11 @@
-import express from 'express'
-import { createBooking, getAllBookings, getOneBooking } from '../controllers/booking.controller.js'
+// import express from 'express'
+// import { createBooking, getAllBookings, getOneBooking } from '../controllers/booking.controller.js'
 
-const router = express.Router()
+// const router = express.Router()
 
-//CRUD
-router.post('/', createBooking) //CREATE
-router.get('/', getAllBookings) //READ
-router.get('/:id', getOneBooking) //READ
+// //CRUD
+// router.post('/', createBooking) //CREATE
+// router.get('/', getAllBookings) //READ
+// router.get('/:id', getOneBooking) //READ
 
-export default router //vill använda router i app.js
+// export default router //vill använda router i app.js
