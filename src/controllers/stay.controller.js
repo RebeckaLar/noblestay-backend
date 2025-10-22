@@ -37,7 +37,7 @@ export const getOneStay = async (req, res) => {
     const castleStay = await Stay.findById(id).exec() 
 
     if(!castleStay) {
-        return res.status(404).json({ message: "Cannot find"})
+        return res.status(404).json({ message: "Cannot find stay"})
     }
 
     res.status(200).json(castleStay)
