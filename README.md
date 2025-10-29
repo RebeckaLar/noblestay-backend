@@ -1,9 +1,9 @@
-# Noble Stay - Backend
+# Noble Stay - AirBnb-inspired Website for Castles
 This student-project aim is to use our knowledge from earlier courses to build the backend part of an AirBnb-inspired website.
 
 ## Tech Stack
 - MongoDB with Mongoose
-- Express JS
+- Express JS 
 - Node.js
 
 ## Installation
@@ -23,13 +23,18 @@ npm install
 cp .env.example .env
 ```
 
-### Initialize the database
+### Download MongoDB database tools
+https://www.mongodb.com/try/download/database-tools
+
+### Import data
 ```
-npx prisma generate
-npx prisma db push
+mongoimport <options> <connection-string> <file>
 ```
 
 ### Run the app
 ```
 npm run dev
 ```
+
+## Credits
+I used MERN-stack tutorials from Joakim Lindh: https://www.youtube.com/@LindhCoding
