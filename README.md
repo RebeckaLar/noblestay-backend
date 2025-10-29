@@ -1,5 +1,5 @@
 # Noble Stay - AirBnb-inspired Website for Castles (WIP)
-This student-project aim is to use our knowledge from earlier courses to build the backend part of an AirBnb-inspired website.
+Project aim is to use our knowledge from earlier courses to build the backend part of an AirBnb-inspired website.
 
 ## Tech Stack
 - MongoDB Atlas with Mongoose
@@ -13,7 +13,7 @@ git clone https://github.com/RebeckaLar/noblestay-backend.git
 cd noblestay-backend
 ```
 
-### MongoDB Connection Setup
+### Setup MongoDB Connection
 1. **Create a `.env` File:**  
    Copy the example .env file
 ```
