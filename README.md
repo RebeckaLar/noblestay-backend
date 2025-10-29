@@ -1,8 +1,8 @@
-# Noble Stay - AirBnb-inspired Website for Castles
+# Noble Stay - AirBnb-inspired Website for Castles (WIP)
 This student-project aim is to use our knowledge from earlier courses to build the backend part of an AirBnb-inspired website.
 
 ## Tech Stack
-- MongoDB with Mongoose
+- MongoDB Atlas with Mongoose
 - Express JS 
 - Node.js
 
@@ -13,22 +13,26 @@ git clone https://github.com/RebeckaLar/noblestay-backend.git
 cd noblestay-backend
 ```
 
-### Install dependencies
-```
-npm install
-```
-
-### Copy the example .env file
+### MongoDB Connection Setup
+1. **Create a `.env` File:**  
+   Copy the example .env file
 ```
 cp .env.example .env
 ```
+2. **Add Your Connection String:**  
+Place your MongoDB connection string in the `.env` file like this: \
+`MONGO_URI="mongodb+srv://new-user:<password>@cluster0.mongodb.net/mydatabase?retryWrites=true&w=majority"` \
+  Replace `<password>` with the password provided and `mydatabase` with the relevant database name.
 
-### Download MongoDB database tools
-https://www.mongodb.com/try/download/database-tools
+3. **Do Not Commit Your `.env` File:**  
+Make sure your `.env` file is listed in `.gitignore` so it won’t be pushed to GitHub.
 
-### Import data
+**Note:**  
+Never share your actual credentials publicly. Collaborators should request their own credentials from the maintainer if needed.
+
+### Install dependencies
 ```
-mongoimport <options> <connection-string> <file>
+npm install
 ```
 
 ### Run the app
