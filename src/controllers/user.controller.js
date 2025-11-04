@@ -61,3 +61,11 @@ export const login = async (req, res) => {
     
     res.status(201).json({ _id: user._id, token, role: user.role})
 }
+
+export const getUserProfile = async (req, res) => {
+    const user = await User.findById(req.user._id).exec()
+    if(!user) {
+        return res.status(404).json({ message: 'User not found'})
+    }
+    res.status(200).json(user)
+}
