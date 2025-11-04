@@ -35,6 +35,29 @@ export const register = async (req, res) => {
     const token = generateToken(user)
 
     res.status(201).json({ _id: user._id, token, role: user.role})
+}
 
+export const login = async (req, res) => {
+    const {email, password} = req.body
 
+    if(!email || !password) {
+        return res.status(400).json({ message: 'Please enter all fields'})
+    }
+
+    const user = await User.findOne({ email: email }).exec()
+
+    if(!user) {
+        //avoid giving clues on whether the email or the password is wrong, therefore send 401 because its still unauthorized.
+        return res.status(401).json({ message: 'Invalid credentials'})
+    }
+
+    const match = await bcrypt.compare(password, user.password)
+
+    if(!match) {
+        return res.status(401).json({ message: 'Invalid credentials'})
+    }
+
+    const token = generateToken(user)
+    
+    res.status(201).json({ _id: user._id, token, role: user.role})
 }
