@@ -39,7 +39,7 @@ export const createBooking = async (req, res) => {
 
 //READ BOOKING
 export const getAllBookings = async (req, res) => {
-    const bookings = await Booking.find().exec()
+    const bookings = await Booking.find({user: _id}).exec()
     res.status(200).json(bookings)
 }
 

@@ -1,5 +1,6 @@
+import { generateToken } from '../lib/generateToken.js'
 import User from '../models/user.model.js'
-//npm package bcryptjs helps encrypting passwords and decrypting password
+//npm package bcryptjs helps encrypting passwords
 import bcrypt from 'bcryptjs'
 
 export const register = async (req, res) => {
@@ -21,5 +22,19 @@ export const register = async (req, res) => {
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(password, salt)
 
-    console.log({ password, hashedPassword })
+    // console.log({ password, hashedPassword })
+
+    //Create user to db with lowercase email and encrypted password property:
+    const user = await User.create({
+        name,
+        email: normalizedEmail,
+        password: hashedPassword
+    })
+
+    //Keep the user logged in by generating a JSON Web Token (access token):
+    const token = generateToken(user)
+
+    res.status(201).json({ _id: user._id, token, role: user.role})
+
+
 }
