@@ -22,8 +22,6 @@ export const register = async (req, res) => {
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(password, salt)
 
-    // console.log({ password, hashedPassword })
-
     //Create user to db with lowercase email and encrypted password property:
     const user = await User.create({
         name,
@@ -63,7 +61,7 @@ export const login = async (req, res) => {
 }
 
 export const getUserProfile = async (req, res) => {
-    const user = await User.findById(req.user._id).exec()
+    const user = await User.findById(req.user._id, "-password").exec()
     if(!user) {
         return res.status(404).json({ message: 'User not found'})
     }

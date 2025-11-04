@@ -5,12 +5,14 @@ import Stay from "../models/stay.model.js";
 export const createBooking = async (req, res) => {
     const {checkInDate, checkOutDate, room, guestType, numberOfGuests } = req.body
     const stayId = req.params.stayId
+    const user = req.user._id
 
     if(!checkInDate || !checkOutDate || !room || !guestType || !numberOfGuests ) {
         return res.status(400).json({ message: "checkInDate, checkOutDate, room, guestType, and numberOfGuests are required"})
     }
 //  CTREATE BOOKING
     const newBooking = await Booking.create({ 
+        user,
         checkInDate, 
         checkOutDate, 
         room, 
@@ -26,14 +28,6 @@ export const createBooking = async (req, res) => {
 
     res.status(201).json(newBooking)
     console.log(checkInDate, checkOutDate, room, guestType, numberOfGuests)
-//body to send for testing:
-// {
-//     "checkInDate" : 22,
-//     "checkOutDate" : 24,
-//     "room" : "Standard",
-//     "guestType" : "adult",
-//     "numberOfGuests": 2
-// }
 
 }
 

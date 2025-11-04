@@ -5,7 +5,7 @@ const staySchema = new mongoose.Schema({
     availableEvent: String || null,
     description: String,
     rules: String,
-    owner: String,
+    owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     location: String,
     bookings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Booking'}],
     guestType: String,
