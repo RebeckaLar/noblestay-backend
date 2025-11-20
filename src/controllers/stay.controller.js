@@ -2,16 +2,22 @@ import Stay from "../models/stay.model.js"
 import mongoose from "mongoose"
 
 export const createStay = async (req, res) => {
-    const { title, description, price } = req.body;  //FIX PROPS
+    const { 
+      title, 
+      description,
+      location,
+      price,
+      availableEvent,
+      image } 
+      = req.body;
     const owner = req.user._id
 
-    if(!title || !description || !price) {
-        return res.status(400).json({ message: "Title, description and price are required"})
-        //hantera required i modellen??
+    if(!title || !description || !location || !price || !availableEvent || !image) {
+        return res.status(400).json({ message: "Title, description, location, price, available events and image are required"})
     }
 
     //Spara OCH skapa en castleStay till databasen samtidigt:
-    const castleStay = await Stay.create({ title, description, price, owner })
+    const castleStay = await Stay.create({ title, description, location, price, availableEvent, image })
     
     res.status(201).json(castleStay) //med json metoden slipper vi stringify, sätta content-type osv.
     console.log(title, description, price)

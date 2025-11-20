@@ -3,15 +3,11 @@ import { createStay, getAllStays, getOneStay, getStaysByUser } from '../controll
 import { verifyToken } from '../middleware/auth.middleware.js'
 const router = express.Router()
 
-router.route('/')
-    .post(verifyToken, createStay)
-    .get(getAllStays)
+router.post('/', verifyToken, createStay)
 
-router.route('/:id')
-    .get(getOneStay)
+router.get('/', getAllStays)
 
-router.route('/auth')
-    .get(verifyToken, getStaysByUser)
-
+router.get('/:id', getOneStay)
+router.get('/auth', verifyToken, getStaysByUser)
 
 export default router //vill använda router i app.js
