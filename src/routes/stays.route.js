@@ -10,7 +10,7 @@ router.route('/')
 router.route('/:id')
     .get(getOneStay)
 
-router.route('/user')
+router.route('/auth')
     .get(verifyToken, getStaysByUser)
 
 

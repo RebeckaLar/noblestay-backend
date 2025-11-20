@@ -5,6 +5,7 @@ import bcrypt from 'bcryptjs'
 
 export const register = async (req, res) => {
     const {userName, email, password} = req.body
+    console.log(req.body)
 
     if(!userName || !email || !password) {
         return res.status(400).json({ message: 'Please enter all fields'})
@@ -32,7 +33,7 @@ export const register = async (req, res) => {
     //Keep the user logged in by generating a JSON Web Token (access token):
     const token = generateToken(user)
 
-    res.status(201).json({ _id: user._id, token, userName: user.userName, email: user.email})
+    res.status(201).json({ _id: user._id, token: token, userName: user.userName, email: user.email})
 }
 
 export const login = async (req, res) => {
@@ -71,6 +72,7 @@ export const getUserProfile = async (req, res) => {
 export const checkToken = async (req, res) => {
     res.status(200).json({ 
             _id: req.user._id,
+            userName: req.user.userName,
             email: req.user.email
      })
 }

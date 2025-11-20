@@ -3,7 +3,7 @@
 import app from './app.js';
 import mongoose from 'mongoose';
 
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT || 8000;
 const MONGO_URI = process.env.MONGO_URI
 
 const dbConnect = async (params) => {
