@@ -8,7 +8,9 @@ export const createStay = async (req, res) => {
       location,
       price,
       availableEvent,
-      image } 
+      image,
+    // owner = req.user._id
+     } 
       = req.body;
     const owner = req.user._id
 
@@ -17,7 +19,7 @@ export const createStay = async (req, res) => {
     }
 
     //Spara OCH skapa en castleStay till databasen samtidigt:
-    const castleStay = await Stay.create({ title, description, location, price, availableEvent, image })
+    const castleStay = await Stay.create({ title, description, location, price, availableEvent, image, owner: owner })
     
     res.status(201).json(castleStay) //med json metoden slipper vi stringify, sätta content-type osv.
     console.log(title, description, price)
@@ -47,7 +49,7 @@ export const getOneStay = async (req, res) => {
 export const getStaysByUser = async (req, res) => {
     const id  = req.user._id
     
-    const user = await user.findById.exec()
+    const user = await user.findById(id).exec()
 
     if(!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).json({ message: "Invalid id"})
