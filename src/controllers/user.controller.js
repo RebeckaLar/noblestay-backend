@@ -4,9 +4,9 @@ import User from '../models/user.model.js'
 import bcrypt from 'bcryptjs'
 
 export const register = async (req, res) => {
-    const {name, email, password} = req.body
+    const {userName, email, password} = req.body
 
-    if(!name || !email || !password) {
+    if(!userName || !email || !password) {
         return res.status(400).json({ message: 'Please enter all fields'})
     }
     //all emails already lowercase in db
@@ -24,7 +24,7 @@ export const register = async (req, res) => {
 
     //Create user to db with lowercase email and encrypted password property:
     const user = await User.create({
-        name,
+        userName,
         email: normalizedEmail,
         password: hashedPassword
     })
@@ -32,7 +32,7 @@ export const register = async (req, res) => {
     //Keep the user logged in by generating a JSON Web Token (access token):
     const token = generateToken(user)
 
-    res.status(201).json({ _id: user._id, token, role: user.role})
+    res.status(201).json({ _id: user._id, token, userName: user.userName, email: user.email})
 }
 
 export const login = async (req, res) => {
@@ -57,7 +57,7 @@ export const login = async (req, res) => {
 
     const token = generateToken(user)
     
-    res.status(201).json({ _id: user._id, token, role: user.role})
+    res.status(201).json({ _id: user._id, token, email:user.email})
 }
 
 export const getUserProfile = async (req, res) => {
@@ -66,4 +66,11 @@ export const getUserProfile = async (req, res) => {
         return res.status(404).json({ message: 'User not found'})
     }
     res.status(200).json(user)
+}
+
+export const checkToken = async (req, res) => {
+    res.status(200).json({ 
+            _id: req.user._id,
+            email: req.user.email
+     })
 }

@@ -1,5 +1,5 @@
 import express from 'express'
-import { createStay, getAllStays, getOneStay } from '../controllers/stay.controller.js'
+import { createStay, getAllStays, getOneStay, getStaysByUser } from '../controllers/stay.controller.js'
 import { verifyToken } from '../middleware/auth.middleware.js'
 const router = express.Router()
 
@@ -9,6 +9,9 @@ router.route('/')
 
 router.route('/:id')
     .get(getOneStay)
+
+router.route('/user')
+    .get(verifyToken, getStaysByUser)
 
 
 export default router //vill använda router i app.js
