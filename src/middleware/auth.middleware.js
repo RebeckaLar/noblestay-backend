@@ -7,7 +7,8 @@ export const verifyToken = (req, res, next) => {
     try {
         const authHeader = req.headers.authorization || req.headers.authorization
         
-        if(!authHeader?.startsWith('Bearer ')) {
+        // if(!authHeader?.startsWith('Bearer ')) {
+        if(!authHeader.includes("Bearer")) {
             return res.status(401).json({ message: 'Not authenticated. No token provided'})
         }
 
@@ -19,9 +20,10 @@ export const verifyToken = (req, res, next) => {
         //everytime we send a token, we have access to req.user
         
         //IF VERIFIED:
-        next()
+        next();
 
     } catch (error) {
+        console.log(error)
         return res.status(401).json({ message: 'Not authenticated'})
     }
 }

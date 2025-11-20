@@ -5,10 +5,10 @@ export const generateToken = (user) => {
     return jwt.sign({
         userInfo: {
             _id: user._id,
-            role: user.role,
+            email: user.email
         }
 
     }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h'})
 }
 
-//create two tokens?: one access token and one refresh token
+//FIX create two tokens?: one access token and one refresh token
