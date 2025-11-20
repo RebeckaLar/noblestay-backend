@@ -1,6 +1,7 @@
 import Stay from "../models/stay.model.js"
 import mongoose from "mongoose"
 
+// CREATE STAY
 export const createStay = async (req, res) => {
     const { 
       title, 
@@ -22,7 +23,6 @@ export const createStay = async (req, res) => {
     const castleStay = await Stay.create({ title, description, location, price, availableEvent, image, owner: owner })
     
     res.status(201).json(castleStay) //med json metoden slipper vi stringify, sätta content-type osv.
-    console.log(title, description, price)
 }
 
 export const getAllStays = async (req, res) => {
@@ -30,6 +30,7 @@ export const getAllStays = async (req, res) => {
     res.status(200).json(castleStays)
 }
 
+// READ STAY
 export const getOneStay = async (req, res) => {
     const { id } = req.params
 
