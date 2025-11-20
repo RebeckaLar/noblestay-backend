@@ -90,22 +90,21 @@ export const getOneBooking = async (req, res) => {
 }
 
 export const getBookingsByUser = async (req, res) => {
-    const id  = req.user._id
-    
-    const user = await user.findById(id).exec()
+    try {
+        const userId = req.user._id;
+        if (!mongoose.Types.ObjectId.isValid(userId)) {
+            return res.status(400).json({ message: "Invalid user id" });
+        }
 
-    if(!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(400).json({ message: "Invalid id"})
+        // Find bookings for this user and populate bookedStay
+        const bookings = await Booking.find({ user: userId }).populate('bookedStay').exec();
+
+        if (!bookings || bookings.length === 0) {
+            return res.status(200).json([]);
+        }
+        res.status(200).json(bookings);
+    } catch (err) {
+        console.error('getBookingsByUser error', err);
+        res.status(500).json({ message: 'Internal server error' });
     }
-
-    if(!user) {
-        return res.status(400).json({ message: "User not found"})
-    }
-
-    const bookingsList = await Stay.find({ user: id }).exec()
-
-    if(bookingsList.length === 0) {
-        return res.status(200).json({ message: "No bookings yet"})
-    }
-    res.status(200).json( stayListings )
-}
+};

@@ -8,7 +8,8 @@ router.post('/', verifyToken, createBooking)
 
 router.get('/', getAllBookings)
 
-router.get('/:id', getOneBooking)
+// Auth route MUST come before /:id to avoid treating "auth" as an ID
 router.get('/auth', verifyToken, getBookingsByUser)
+router.get('/:id', getOneBooking)
 
 export default router
