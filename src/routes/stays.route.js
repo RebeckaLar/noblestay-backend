@@ -10,4 +10,4 @@ router.get('/', getAllStays)
 router.get('/:id', getOneStay)
 router.get('/auth', verifyToken, getStaysByUser)
 
-export default router //vill använda router i app.js
+export default router

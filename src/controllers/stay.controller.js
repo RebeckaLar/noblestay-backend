@@ -66,5 +66,3 @@ export const getStaysByUser = async (req, res) => {
     }
     res.status(200).json( stayListings )
 }
-
-//FIX GET STAYS BY FILTER
