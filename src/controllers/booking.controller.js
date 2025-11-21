@@ -1,6 +1,7 @@
 import Booking from "../models/booking.model.js";
 import mongoose from "mongoose";
 import Stay from "../models/stay.model.js";
+import Room from "../models/room.model.js";
 
 // CREATE BOOKING
 export const createBooking = async (req, res) => {
