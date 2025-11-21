@@ -80,7 +80,7 @@ export const getOneBooking = async (req, res) => {
         return res.status(400).json({ message: "Invalid id"})
     }
 
-    const booking = await Booking.findById(id).exec()
+    const booking = await Booking.findById(id).populate('bookedStay').exec()
 
     if(!booking) {
         return res.status(404).json({ message: "Cannot find booking"})
