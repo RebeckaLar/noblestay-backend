@@ -5,7 +5,11 @@ const bookingSchema = new mongoose.Schema({
     bookedStay: { type: mongoose.Schema.Types.ObjectId, ref: 'Stay', required: true},
     checkInDate: Number,
     checkOutDate: Number,
-    room: String,
+    room: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Room',  //check if this matches room model name
+        required: true 
+    },
     guestType: String,
     numberOfGuests: Number,
 })

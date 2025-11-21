@@ -79,7 +79,10 @@ export const getOneBooking = async (req, res) => {
         return res.status(400).json({ message: "Invalid id"})
     }
 
-    const booking = await Booking.findById(id).populate('bookedStay').exec()
+    const booking = await Booking.findById(id)
+        .populate('bookedStay')
+        .populate('room')
+        .exec()
 
     if(!booking) {
         return res.status(404).json({ message: "Cannot find booking"})
@@ -95,8 +98,13 @@ export const getBookingsByUser = async (req, res) => {
             return res.status(400).json({ message: "Invalid user id" });
         }
 
-        // Find bookings for this user and populate bookedStay
-        const bookings = await Booking.find({ user: userId }).populate('bookedStay').exec();
+        // Find bookings for this user and populate bookedStay and room
+        const bookings = await Booking.find({ user: userId })
+            .populate('bookedStay')
+            .populate('room')
+            .exec();
+
+        console.log('Fetched bookings:', JSON.stringify(bookings, null, 2));
 
         if (!bookings || bookings.length === 0) {
             return res.status(200).json([]);
