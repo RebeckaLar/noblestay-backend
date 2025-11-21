@@ -1,4 +1,4 @@
-# Noble Stay - AirBnb-inspired Website for Castles (WIP)
+# Noble Stay - AirBnb-inspired Website for Castles
 Project aim is to use our knowledge from earlier courses to build the backend part of an AirBnb-inspired website.
 
 ## Tech Stack
