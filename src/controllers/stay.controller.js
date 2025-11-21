@@ -10,7 +10,6 @@ export const createStay = async (req, res) => {
       price,
       availableEvent,
       image,
-    // owner = req.user._id
      } 
       = req.body;
     const owner = req.user._id

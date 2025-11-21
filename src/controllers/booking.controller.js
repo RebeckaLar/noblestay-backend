@@ -34,7 +34,7 @@ export const createBooking = async (req, res) => {
             return res.status(404).json({ message: 'Stay not found' });
         }
 
-        // Normalize dates -> store as timestamps (Number) per schema
+        // Normalize dates -> store as timestamps (Number) per schema //FIX IMPORTANT
         const checkInTs = new Date(checkInDate).getTime();
         const checkOutTs = new Date(checkOutDate).getTime();
         if (isNaN(checkInTs) || isNaN(checkOutTs)) {

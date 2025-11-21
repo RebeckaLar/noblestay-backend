@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 
 const staySchema = new mongoose.Schema({
     title: String, 
-    availableEvent: String || null,
     description: String,
     rules: String,
     owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
@@ -12,6 +11,8 @@ const staySchema = new mongoose.Schema({
     numberOfGuests: Number,
     room: String,
     price: Number,
+    availableEvent: String || null,
+    image: String,
 })
 
 const Stay = mongoose.model('Stay', staySchema)
